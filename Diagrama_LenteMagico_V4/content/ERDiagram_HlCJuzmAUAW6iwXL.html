@@ -1,0 +1,5613 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Entity Relationship Diagram - Lente-Magico-SI</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		LM_SI	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Entity Relationship Diagram - Lente-Magico-SI		</span>
+<a onclick="javascript: showVpLink('DiagramaLM_SI-v5_Corregido.vpp://diagram/HlCJuzmAUAW6iwXL', 'Lente-Magico-SI\nDiagramaLM_SI-v5_Corregido.vpp://diagram/HlCJuzmAUAW6iwXL', 'Lente-Magico-SI', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|1869.0|1022.0|198.0|75.0|DBTable_2fCWy_mAUAWIfAqK.html|DBTable_2fCWy_mAUAWIfAqK.html|WfCWy_mAUAWIfAqJ" id="optionWfCWy_mAUAWIfAqJ">Antecedentes : Entity</option>
+<option value="shape|1415.0|991.0|359.0|201.0|DBTable_MiEWFzmAUAWGVBB4.html|DBTable_MiEWFzmAUAWGVBB4.html|MiEWFzmAUAWGVBB3" id="optionMiEWFzmAUAWGVBB3">formula_optica : Entity</option>
+<option value="shape|1272.0|782.0|151.0|75.0|DBTable_jq1mFzmAUAWGVBBW.html|DBTable_jq1mFzmAUAWGVBBW.html|jq1mFzmAUAWGVBBV" id="optionjq1mFzmAUAWGVBBV">historia_clinica : Entity</option>
+<option value="shape|1932.0|772.0|290.0|201.0|DBTable_MbbGFzmAUAWGVBAn.html|DBTable_MbbGFzmAUAWGVBAn.html|MbbGFzmAUAWGVBAm" id="optionMbbGFzmAUAWGVBAm">consulta : Entity</option>
+<option value="shape|1249.0|760.0|1017.0|485.0|DiagramOverview_wTmkFzmAUAWGVA97.html|DiagramOverview_wTmkFzmAUAWGVA97.html|wTmkFzmAUAWGVA96" id="optionwTmkFzmAUAWGVA96">optometra : Diagram Overview</option>
+<option value="shape|916.0|474.0|155.0|111.0|DBTable_P3E4FzmAUAWGVA51.html|DBTable_P3E4FzmAUAWGVA51.html|P3E4FzmAUAWGVA50" id="optionP3E4FzmAUAWGVA50">agenda_consulta : Entity</option>
+<option value="shape|2746.0|228.0|197.0|111.0|DBTable_tc8f5zmAUAWGVAn9.html|DBTable_tc8f5zmAUAWGVAn9.html|tc8f5zmAUAWGVAn8" id="optiontc8f5zmAUAWGVAn8">detalle_compra : Entity</option>
+<option value="shape|2439.0|284.0|192.0|111.0|DBTable_b_Ov5zmAUAWGVAnY.html|DBTable_b_Ov5zmAUAWGVAnY.html|L_Ov5zmAUAWGVAnX" id="optionL_Ov5zmAUAWGVAnX">compra : Entity</option>
+<option value="shape|2121.0|373.0|287.0|184.0|DBTable_1_p35zmAUAWGVAl9.html|DBTable_1_p35zmAUAWGVAl9.html|1.p35zmAUAWGVAl8" id="option1.p35zmAUAWGVAl8">proveedor : Entity</option>
+<option value="shape|2386.0|35.0|270.0|201.0|DBTable_yNyn5zmAUAWGVAjU.html|DBTable_yNyn5zmAUAWGVAjU.html|yNyn5zmAUAWGVAjT" id="optionyNyn5zmAUAWGVAjT">producto : Entity</option>
+<option value="shape|2142.0|228.0|214.0|101.0|DBTable_zu975zmAUAWGVAh5.html|DBTable_zu975zmAUAWGVAh5.html|zu975zmAUAWGVAh4" id="optionzu975zmAUAWGVAh4">cat_producto : Entity</option>
+<option value="shape|2095.0|2.0|885.0|599.0|DiagramOverview_xCjL5zmAUAWGVAhH.html|DiagramOverview_xCjL5zmAUAWGVAhH.html|xCjL5zmAUAWGVAhG" id="optionxCjL5zmAUAWGVAhG">bodega / compras : Diagram Overview</option>
+<option value="shape|1711.0|170.0|150.0|112.0|DBTable_gXIGxzmAUAW6iw7e.html|DBTable_gXIGxzmAUAW6iw7e.html|gXIGxzmAUAW6iw7d" id="optiongXIGxzmAUAW6iw7d">detalle_venta : Entity</option>
+<option value="shape|1711.0|434.0|148.0|94.0|DBTable_af7CxzmAUAW6iw2c.html|DBTable_af7CxzmAUAW6iw2c.html|af7CxzmAUAW6iw2b" id="optionaf7CxzmAUAW6iw2b">factura : Entity</option>
+<option value="shape|1373.0|407.0|176.0|149.0|DBTable_IuGLRzmAUAW6iwoF.html|DBTable_IuGLRzmAUAW6iwoF.html|IuGLRzmAUAW6iwoE" id="optionIuGLRzmAUAW6iwoE">pago : Entity</option>
+<option value="shape|1381.0|178.0|160.0|112.0|DBTable_DjALRzmAUAW6iwm3.html|DBTable_DjALRzmAUAW6iwm3.html|DjALRzmAUAW6iwm2" id="optionDjALRzmAUAW6iwm2">venta : Entity</option>
+<option value="shape|931.0|170.0|255.0|75.0|DBTable_L_51RzmAUAW6iwgd.html|DBTable_L_51RzmAUAW6iwgd.html|L.51RzmAUAW6iwgc" id="optionL.51RzmAUAW6iwgc">cliente : Entity</option>
+<option value="shape|263.0|853.0|192.0|131.0|DBTable_hiAUezmAUAW6iwjR.html|DBTable_hiAUezmAUAW6iwjR.html|BiAUezmAUAW6iwjQ" id="optionBiAUezmAUAW6iwjQ">log_errores : Entity</option>
+<option value="shape|458.0|334.0|305.0|220.0|DBTable_iktDuzmAUAW6iwdR.html|DBTable_iktDuzmAUAW6iwdR.html|iktDuzmAUAW6iwdQ" id="optioniktDuzmAUAW6iwdQ">datos_personales : Entity</option>
+<option value="shape|136.0|615.0|341.0|94.0|DBTable_4bk9uzmAUAW6iwcL.html|DBTable_4bk9uzmAUAW6iwcL.html|4bk9uzmAUAW6iwcK" id="option4bk9uzmAUAW6iwcK">tipo_documento : Entity</option>
+<option value="shape|56.0|147.0|358.0|165.0|DBTable_E3z1uzmAUAW6iwaO.html|DBTable_E3z1uzmAUAW6iwaO.html|E3z1uzmAUAW6iwaN" id="optionE3z1uzmAUAW6iwaN">usuario : Entity</option>
+<option value="shape|504.0|26.0|204.0|59.0|DBTable_zDS1uzmAUAW6iwZO.html|DBTable_zDS1uzmAUAW6iwZO.html|zDS1uzmAUAW6iwZN" id="optionzDS1uzmAUAW6iwZN">autorización_usuario : Entity</option>
+<option value="shape|58.0|26.0|138.0|59.0|DBTable_BA3ZuzmAUAW6iwX8.html|DBTable_BA3ZuzmAUAW6iwX8.html|mA3ZuzmAUAW6iwX7" id="optionmA3ZuzmAUAW6iwX7">autorizacion : Entity</option>
+<option value="shape|2.0|4.0|831.0|781.0|DiagramOverview_dje9RzmAUAW6iwim.html|DiagramOverview_dje9RzmAUAW6iwim.html|dje9RzmAUAW6iwil" id="optiondje9RzmAUAW6iwil">cliente : Diagram Overview</option>
+<option value="shape|231.0|812.0|275.0|233.0|DiagramOverview_N6kDRzmAUAW6iwkZ.html|DiagramOverview_N6kDRzmAUAW6iwkZ.html|16kDRzmAUAW6iwkY" id="option16kDRzmAUAW6iwkY">logs : Diagram Overview</option>
+<option value="shape|908.0|147.0|1074.0|494.0|DiagramOverview_C8BDRzmAUAW6iwlk.html|DiagramOverview_C8BDRzmAUAW6iwlk.html|88BDRzmAUAW6iwlj" id="option88BDRzmAUAW6iwlj">venta/caja : Diagram Overview</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/LenteMagicoSI.png" usemap="#diagram_map" class="Image" width="2984" height="1249"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="632.0, 85.0, 632.0, 232.0, 414.0, 232.0, 414.0, 246.0, 632.0, 246.0, 632.0, 249.0, 646.0, 249.0, 646.0, 246.0, 649.0, 246.0, 649.0, 232.0, 646.0, 232.0, 646.0, 85.0" coords2="632.0, 85.0, 632.0, 232.0, 414.0, 232.0, 414.0, 246.0, 632.0, 246.0, 632.0, 249.0, 646.0, 249.0, 646.0, 246.0, 649.0, 246.0, 649.0, 232.0, 646.0, 232.0, 646.0, 85.0" shape="poly" alt="fk_aut_us:Relationship" id="areadiagram_map_4VY8ezmAUAW6iwqa_default" href="DBForeignKey_5FY8ezmAUAW6iwqZ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="196.0, 48.0, 196.0, 62.0, 504.0, 62.0, 504.0, 48.0" coords2="196.0, 48.0, 196.0, 62.0, 504.0, 62.0, 504.0, 48.0" shape="poly" alt="fk_aut_usuario:Relationship" id="areadiagram_map_2lTcezmAUAW6iwpe_default" href="DBForeignKey_iZTcezmAUAW6iwpd.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="775.0, 192.0, 775.0, 195.0, 772.0, 195.0, 772.0, 209.0, 775.0, 209.0, 775.0, 354.0, 763.0, 354.0, 763.0, 368.0, 775.0, 368.0, 775.0, 371.0, 789.0, 371.0, 789.0, 368.0, 792.0, 368.0, 792.0, 354.0, 789.0, 354.0, 789.0, 209.0, 931.0, 209.0, 931.0, 195.0, 789.0, 195.0, 789.0, 192.0" coords2="775.0, 192.0, 775.0, 195.0, 772.0, 195.0, 772.0, 209.0, 775.0, 209.0, 775.0, 354.0, 763.0, 354.0, 763.0, 368.0, 775.0, 368.0, 775.0, 371.0, 789.0, 371.0, 789.0, 368.0, 792.0, 368.0, 792.0, 354.0, 789.0, 354.0, 789.0, 209.0, 931.0, 209.0, 931.0, 195.0, 789.0, 195.0, 789.0, 192.0" shape="poly" alt="fk_cli_regc:Relationship" id="areadiagram_map_0y5bRzmAUAW6iwrf_default" href="DBForeignKey_Mi5bRzmAUAW6iwre.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1186.0, 195.0, 1186.0, 209.0, 1381.0, 209.0, 1381.0, 195.0" coords2="1186.0, 195.0, 1186.0, 209.0, 1381.0, 209.0, 1381.0, 195.0" shape="poly" alt="fk_regc_ven:Relationship" id="areadiagram_map_5vLbRzmAUAW6iwsG_default" href="DBForeignKey_jXLbRzmAUAW6iwsF.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1541.0, 239.0, 1541.0, 253.0, 1711.0, 253.0, 1711.0, 239.0" coords2="1541.0, 239.0, 1541.0, 253.0, 1711.0, 253.0, 1711.0, 239.0" shape="poly" alt="fk_ven_detall_ven:Relationship" id="areadiagram_map_cp0mxzmAUAW6iw91_default" href="DBForeignKey_je0mxzmAUAW6iw90.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2404.0, 236.0, 2404.0, 308.0, 2356.0, 308.0, 2356.0, 322.0, 2404.0, 322.0, 2404.0, 325.0, 2418.0, 325.0, 2418.0, 322.0, 2421.0, 322.0, 2421.0, 308.0, 2418.0, 308.0, 2418.0, 236.0" coords2="2404.0, 236.0, 2404.0, 308.0, 2356.0, 308.0, 2356.0, 322.0, 2404.0, 322.0, 2404.0, 325.0, 2418.0, 325.0, 2418.0, 322.0, 2421.0, 322.0, 2421.0, 308.0, 2418.0, 308.0, 2418.0, 236.0" shape="poly" alt="fk_cat_p:Relationship" id="areadiagram_map_FrTgFzmAUAWGVAsw_default" href="DBForeignKey_tzTgFzmAUAWGVAsv.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1314.0, 217.0, 1314.0, 220.0, 1186.0, 220.0, 1186.0, 234.0, 1314.0, 234.0, 1314.0, 525.0, 1071.0, 525.0, 1071.0, 539.0, 1314.0, 539.0, 1314.0, 542.0, 1328.0, 542.0, 1328.0, 539.0, 1331.0, 539.0, 1331.0, 525.0, 1328.0, 525.0, 1328.0, 234.0, 1331.0, 234.0, 1331.0, 220.0, 1328.0, 220.0, 1328.0, 217.0" coords2="1314.0, 217.0, 1314.0, 220.0, 1186.0, 220.0, 1186.0, 234.0, 1314.0, 234.0, 1314.0, 525.0, 1071.0, 525.0, 1071.0, 539.0, 1314.0, 539.0, 1314.0, 542.0, 1328.0, 542.0, 1328.0, 539.0, 1331.0, 539.0, 1331.0, 525.0, 1328.0, 525.0, 1328.0, 234.0, 1331.0, 234.0, 1331.0, 220.0, 1328.0, 220.0, 1328.0, 217.0" shape="poly" alt="fk_cli_age:Relationship" id="areadiagram_map_BPsEFzmAUAWGVA8N_default" href="DBForeignKey_1jsEFzmAUAWGVA8M.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2103.0, 125.0, 2103.0, 128.0, 2100.0, 128.0, 2100.0, 142.0, 2103.0, 142.0, 2103.0, 254.0, 1861.0, 254.0, 1861.0, 268.0, 2103.0, 268.0, 2103.0, 271.0, 2117.0, 271.0, 2117.0, 268.0, 2120.0, 268.0, 2120.0, 254.0, 2117.0, 254.0, 2117.0, 142.0, 2386.0, 142.0, 2386.0, 128.0, 2117.0, 128.0, 2117.0, 125.0" coords2="2103.0, 125.0, 2103.0, 128.0, 2100.0, 128.0, 2100.0, 142.0, 2103.0, 142.0, 2103.0, 254.0, 1861.0, 254.0, 1861.0, 268.0, 2103.0, 268.0, 2103.0, 271.0, 2117.0, 271.0, 2117.0, 268.0, 2120.0, 268.0, 2120.0, 254.0, 2117.0, 254.0, 2117.0, 142.0, 2386.0, 142.0, 2386.0, 128.0, 2117.0, 128.0, 2117.0, 125.0" shape="poly" alt="fk_deta_pro:Relationship" id="areadiagram_map_44XEFzmAUAWGVA9U_default" href="DBForeignKey_tIXEFzmAUAWGVA9T.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1673.0, 829.0, 1673.0, 832.0, 1670.0, 832.0, 1670.0, 846.0, 1673.0, 846.0, 1673.0, 991.0, 1687.0, 991.0, 1687.0, 846.0, 1932.0, 846.0, 1932.0, 832.0, 1687.0, 832.0, 1687.0, 829.0" coords2="1673.0, 829.0, 1673.0, 832.0, 1670.0, 832.0, 1670.0, 846.0, 1673.0, 846.0, 1673.0, 991.0, 1687.0, 991.0, 1687.0, 846.0, 1932.0, 846.0, 1932.0, 832.0, 1687.0, 832.0, 1687.0, 829.0" shape="poly" alt="fk_for_con:Relationship" id="areadiagram_map_zysOFzmAUAWGVBFR_default" href="DBForeignKey_FSsOFzmAUAWGVBFQ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2285.0, 557.0, 2285.0, 680.0, 477.0, 680.0, 477.0, 694.0, 2285.0, 694.0, 2285.0, 697.0, 2299.0, 697.0, 2299.0, 694.0, 2302.0, 694.0, 2302.0, 680.0, 2299.0, 680.0, 2299.0, 557.0" coords2="2285.0, 557.0, 2285.0, 680.0, 477.0, 680.0, 477.0, 694.0, 2285.0, 694.0, 2285.0, 697.0, 2299.0, 697.0, 2299.0, 694.0, 2302.0, 694.0, 2302.0, 680.0, 2299.0, 680.0, 2299.0, 557.0" shape="poly" alt="fk_tipo_prov:Relationship" id="areadiagram_map_mDVqSLmGAqACDAnj_default" href="DBForeignKey_sDVqSLmGAqACDAni.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2546.0, 395.0, 2546.0, 532.0, 2408.0, 532.0, 2408.0, 546.0, 2546.0, 546.0, 2546.0, 549.0, 2560.0, 549.0, 2560.0, 546.0, 2563.0, 546.0, 2563.0, 532.0, 2560.0, 532.0, 2560.0, 395.0" coords2="2546.0, 395.0, 2546.0, 532.0, 2408.0, 532.0, 2408.0, 546.0, 2546.0, 546.0, 2546.0, 549.0, 2560.0, 549.0, 2560.0, 546.0, 2563.0, 546.0, 2563.0, 532.0, 2560.0, 532.0, 2560.0, 395.0" shape="poly" alt="fk_prov_com:Relationship" id="areadiagram_map_6ygaSLmGAqACDApc_default" href="DBForeignKey_kygaSLmGAqACDApb.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="65.0, 312.0, 65.0, 910.0, 62.0, 910.0, 62.0, 924.0, 65.0, 924.0, 65.0, 927.0, 79.0, 927.0, 79.0, 924.0, 263.0, 924.0, 263.0, 910.0, 79.0, 910.0, 79.0, 312.0" coords2="65.0, 312.0, 65.0, 910.0, 62.0, 910.0, 62.0, 924.0, 65.0, 924.0, 65.0, 927.0, 79.0, 927.0, 79.0, 924.0, 263.0, 924.0, 263.0, 910.0, 79.0, 910.0, 79.0, 312.0" shape="poly" alt="fk_usua_logerro:Relationship" id="areadiagram_map_fA7OSLmGAqACDAtT_default" href="DBForeignKey_dA7OSLmGAqACDAtS.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2869.0, 339.0, 2869.0, 525.0, 2589.0, 525.0, 2589.0, 395.0, 2575.0, 395.0, 2575.0, 525.0, 2572.0, 525.0, 2572.0, 539.0, 2575.0, 539.0, 2575.0, 542.0, 2589.0, 542.0, 2589.0, 539.0, 2869.0, 539.0, 2869.0, 542.0, 2883.0, 542.0, 2883.0, 539.0, 2886.0, 539.0, 2886.0, 525.0, 2883.0, 525.0, 2883.0, 339.0" coords2="2869.0, 339.0, 2869.0, 525.0, 2589.0, 525.0, 2589.0, 395.0, 2575.0, 395.0, 2575.0, 525.0, 2572.0, 525.0, 2572.0, 539.0, 2575.0, 539.0, 2575.0, 542.0, 2589.0, 542.0, 2589.0, 539.0, 2869.0, 539.0, 2869.0, 542.0, 2883.0, 542.0, 2883.0, 539.0, 2886.0, 539.0, 2886.0, 525.0, 2883.0, 525.0, 2883.0, 339.0" shape="poly" alt="fk_com_det:Relationship" id="areadiagram_map_gZFQFzmAUAWGVAuv_default" href="DBForeignKey_eBFQFzmAUAWGVAuu.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1423.0, 794.0, 1423.0, 808.0, 1932.0, 808.0, 1932.0, 794.0" coords2="1423.0, 794.0, 1423.0, 808.0, 1932.0, 808.0, 1932.0, 794.0" shape="poly" alt="fk_his_con:Relationship" id="areadiagram_map_QNTxSLmGAqACDA1Z_default" href="DBForeignKey_n1TxSLmGAqACDA1Y.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2833.0, 92.0, 2833.0, 95.0, 2656.0, 95.0, 2656.0, 109.0, 2833.0, 109.0, 2833.0, 228.0, 2847.0, 228.0, 2847.0, 109.0, 2850.0, 109.0, 2850.0, 95.0, 2847.0, 95.0, 2847.0, 92.0" coords2="2833.0, 92.0, 2833.0, 95.0, 2656.0, 95.0, 2656.0, 109.0, 2833.0, 109.0, 2833.0, 228.0, 2847.0, 228.0, 2847.0, 109.0, 2850.0, 109.0, 2850.0, 95.0, 2847.0, 95.0, 2847.0, 92.0" shape="poly" alt="fk_pro_det:Relationship" id="areadiagram_map_ipz4zHmGAqAEFwxm_default" href="DBForeignKey_kpz4zHmGAqAEFwxl.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1299.0, 857.0, 1299.0, 920.0, 1296.0, 920.0, 1296.0, 934.0, 1299.0, 934.0, 1299.0, 937.0, 1313.0, 937.0, 1313.0, 934.0, 1876.0, 934.0, 1876.0, 1022.0, 1890.0, 1022.0, 1890.0, 934.0, 1893.0, 934.0, 1893.0, 920.0, 1890.0, 920.0, 1890.0, 917.0, 1876.0, 917.0, 1876.0, 920.0, 1313.0, 920.0, 1313.0, 857.0" coords2="1299.0, 857.0, 1299.0, 920.0, 1296.0, 920.0, 1296.0, 934.0, 1299.0, 934.0, 1299.0, 937.0, 1313.0, 937.0, 1313.0, 934.0, 1876.0, 934.0, 1876.0, 1022.0, 1890.0, 1022.0, 1890.0, 934.0, 1893.0, 934.0, 1893.0, 920.0, 1890.0, 920.0, 1890.0, 917.0, 1876.0, 917.0, 1876.0, 920.0, 1313.0, 920.0, 1313.0, 857.0" shape="poly" alt="fk_his_con_ant:Relationship" id="areadiagram_map_gTa2y_mAUAWIfAr2_default" href="DBForeignKey_E9a2y_mAUAWIfAr1.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1454.0, 100.0, 1454.0, 103.09084, 1454.0, 103.09084, 178.0, 109.90916, 178.0, 109.90916, 178.0, 107.0, 164.0, 107.0, 164.0, 109.98397, 161.0, 110.0, 161.0, 124.0, 164.0, 123.98397, 164.0, 147.0, 178.0, 147.0, 178.0, 123.90916, 178.0, 123.90916, 1454.0, 117.09084, 1454.0, 117.09084, 1454.0, 178.0, 1468.0, 178.0, 1468.0, 117.01603, 1471.0, 117.0, 1471.0, 103.0, 1468.0, 103.01603, 1468.0, 103.01603, 1468.0, 100.0" coords2="1454.0, 100.0, 1454.0, 103.09084, 1454.0, 103.09084, 178.0, 109.90916, 178.0, 109.90916, 178.0, 107.0, 164.0, 107.0, 164.0, 109.98397, 161.0, 110.0, 161.0, 124.0, 164.0, 123.98397, 164.0, 147.0, 178.0, 147.0, 178.0, 123.90916, 178.0, 123.90916, 1454.0, 117.09084, 1454.0, 117.09084, 1454.0, 178.0, 1468.0, 178.0, 1468.0, 117.01603, 1471.0, 117.0, 1471.0, 103.0, 1468.0, 103.01603, 1468.0, 103.01603, 1468.0, 100.0" shape="poly" alt=":Relationship" id="areadiagram_map_i3r3y_mAUAWwwQqP_default" href="DBForeignKey__Xr3y_mAUAWwwQqO.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="89.0, 312.0, 89.0, 739.9922, 86.0, 740.0, 86.0, 754.0, 89.0, 753.9922, 89.0, 757.0, 103.0, 757.0, 103.0, 753.95575, 103.0, 753.95575, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 772.0, 2003.0, 772.0, 2003.0, 749.0078, 2006.0, 749.0, 2006.0, 735.0, 2003.0, 735.0078, 2003.0, 732.0, 1989.0, 732.0, 1989.0, 735.04425, 1989.0, 735.04425, 103.0, 739.95575, 103.0, 739.95575, 103.0, 312.0" coords2="89.0, 312.0, 89.0, 739.9922, 86.0, 740.0, 86.0, 754.0, 89.0, 753.9922, 89.0, 757.0, 103.0, 757.0, 103.0, 753.95575, 103.0, 753.95575, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 749.04425, 1989.0, 772.0, 2003.0, 772.0, 2003.0, 749.0078, 2006.0, 749.0, 2006.0, 735.0, 2003.0, 735.0078, 2003.0, 732.0, 1989.0, 732.0, 1989.0, 735.04425, 1989.0, 735.04425, 103.0, 739.95575, 103.0, 739.95575, 103.0, 312.0" shape="poly" alt="fk_use_cons:Relationship" id="areadiagram_map_5AU_y_mAUAWwwQrq_default" href="DBForeignKey_6AU_y_mAUAWwwQrp.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1453.0, 290.0, 1453.0, 407.0, 1467.0, 407.0, 1467.0, 290.0" coords2="1453.0, 290.0, 1453.0, 407.0, 1467.0, 407.0, 1467.0, 290.0" shape="poly" alt="fk_ven_pag:Relationship" id="areadiagram_map_iHFRAAWGAqACIgoe_default" href="DBForeignKey_oHFRAAWGAqACIgod.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="161.0, 312.0, 161.0, 435.0, 158.0, 435.0, 158.0, 449.0, 161.0, 449.0, 161.0, 452.0, 175.0, 452.0, 175.0, 449.0, 458.0, 449.0, 458.0, 435.0, 175.0, 435.0, 175.0, 312.0" coords2="161.0, 312.0, 161.0, 435.0, 158.0, 435.0, 158.0, 449.0, 161.0, 449.0, 161.0, 452.0, 175.0, 452.0, 175.0, 449.0, 458.0, 449.0, 458.0, 435.0, 175.0, 435.0, 175.0, 312.0" shape="poly" alt="fk_usu_datos:Relationship" id="areadiagram_map_ZymTgAWGAqACIgt._default" href="DBForeignKey_6ymTgAWGAqACIgt9.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1549.0, 483.0, 1549.0, 497.0, 1711.0, 497.0, 1711.0, 483.0" coords2="1549.0, 483.0, 1549.0, 497.0, 1711.0, 497.0, 1711.0, 483.0" shape="poly" alt="fk_pag_fac:Relationship" id="areadiagram_map_MFhXgAWGAqACIgz8_default" href="DBForeignKey_d5hXgAWGAqACIgz7.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1101.0, 245.0, 1101.0, 821.0, 1098.0, 821.0, 1098.0, 835.0, 1101.0, 835.0, 1101.0, 838.0, 1115.0, 838.0, 1115.0, 835.0, 1272.0, 835.0, 1272.0, 821.0, 1115.0, 821.0, 1115.0, 245.0" coords2="1101.0, 245.0, 1101.0, 821.0, 1098.0, 821.0, 1098.0, 835.0, 1101.0, 835.0, 1101.0, 838.0, 1115.0, 838.0, 1115.0, 835.0, 1272.0, 835.0, 1272.0, 821.0, 1115.0, 821.0, 1115.0, 245.0" shape="poly" alt="fk_cli_hisc:Relationship" id="areadiagram_map_SyvvTIWGAqACDAoE_default" href="DBForeignKey_kyvvTIWGAqACDAoD.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="986.0, 585.0, 986.0, 900.0, 983.0, 900.0, 983.0, 914.0, 986.0, 914.0, 986.0, 917.0, 1000.0, 917.0, 1000.0, 914.0, 1932.0, 914.0, 1932.0, 900.0, 1000.0, 900.0, 1000.0, 585.0" coords2="986.0, 585.0, 986.0, 900.0, 983.0, 900.0, 983.0, 914.0, 986.0, 914.0, 986.0, 917.0, 1000.0, 917.0, 1000.0, 914.0, 1932.0, 914.0, 1932.0, 900.0, 1000.0, 900.0, 1000.0, 585.0" shape="poly" alt=":Relationship" id="areadiagram_map_UHr4zIWGAqACDAp._default" href="DBForeignKey_v7r4zIWGAqACDAp9.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="602.0, 554.0, 602.0, 655.0, 477.0, 655.0, 477.0, 669.0, 602.0, 669.0, 602.0, 672.0, 616.0, 672.0, 616.0, 669.0, 619.0, 669.0, 619.0, 655.0, 616.0, 655.0, 616.0, 554.0" coords2="602.0, 554.0, 602.0, 655.0, 477.0, 655.0, 477.0, 669.0, 602.0, 669.0, 602.0, 672.0, 616.0, 672.0, 616.0, 669.0, 619.0, 669.0, 619.0, 655.0, 616.0, 655.0, 616.0, 554.0" shape="poly" alt=":Relationship" id="areadiagram_map_qibKzIWGAqACDAs2_default" href="DBForeignKey_IibKzIWGAqACDAs1.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1869, 1022, 2067, 1097" coords2="1869, 1022, 2067, 1097" shape="rect" alt="Antecedentes:Entity" id="areadiagram_map_WfCWy_mAUAWIfAqJ_default" href="DBTable_2fCWy_mAUAWIfAqK.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      formula_optica
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1415, 991, 1774, 1192" coords2="1415, 991, 1774, 1192" shape="rect" alt="formula_optica:Entity" id="areadiagram_map_MiEWFzmAUAWGVBB3_default" href="DBTable_MiEWFzmAUAWGVBB4.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      historia_clinica
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1272, 782, 1423, 857" coords2="1272, 782, 1423, 857" shape="rect" alt="historia_clinica:Entity" id="areadiagram_map_jq1mFzmAUAWGVBBV_default" href="DBTable_jq1mFzmAUAWGVBBW.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      consulta
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1932, 772, 2222, 973" coords2="1932, 772, 2222, 973" shape="rect" alt="consulta:Entity" id="areadiagram_map_MbbGFzmAUAWGVBAm_default" href="DBTable_MbbGFzmAUAWGVBAn.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="1249.0,760.0,2266.0,780.0" coords2="1249.0,760.0,2266.0,780.0" shape="rect" alt="optometra:Diagram Overview" id="areadiagram_map_wTmkFzmAUAWGVA96_defaultheader" href="DiagramOverview_wTmkFzmAUAWGVA97.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1249.0,780.0,2266.0,1245.0" coords2="1249.0,780.0,2266.0,1245.0" shape="rect" alt="optometra:Diagram Overview" id="areadiagram_map_wTmkFzmAUAWGVA96_default" href="" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      agenda_consulta
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="916, 474, 1071, 585" coords2="916, 474, 1071, 585" shape="rect" alt="agenda_consulta:Entity" id="areadiagram_map_P3E4FzmAUAWGVA50_default" href="DBTable_P3E4FzmAUAWGVA51.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      detalle_compra
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="2746, 228, 2943, 339" coords2="2746, 228, 2943, 339" shape="rect" alt="detalle_compra:Entity" id="areadiagram_map_tc8f5zmAUAWGVAn8_default" href="DBTable_tc8f5zmAUAWGVAn9.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      compra
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="2439, 284, 2631, 395" coords2="2439, 284, 2631, 395" shape="rect" alt="compra:Entity" id="areadiagram_map_L_Ov5zmAUAWGVAnX_default" href="DBTable_b_Ov5zmAUAWGVAnY.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      peoveedor
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="2121, 373, 2408, 557" coords2="2121, 373, 2408, 557" shape="rect" alt="proveedor:Entity" id="areadiagram_map_1.p35zmAUAWGVAl8_default" href="DBTable_1_p35zmAUAWGVAl9.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      producto
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="2386, 35, 2656, 236" coords2="2386, 35, 2656, 236" shape="rect" alt="producto:Entity" id="areadiagram_map_yNyn5zmAUAWGVAjT_default" href="DBTable_yNyn5zmAUAWGVAjU.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      categoria_producto
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="2142, 228, 2356, 329" coords2="2142, 228, 2356, 329" shape="rect" alt="cat_producto:Entity" id="areadiagram_map_zu975zmAUAWGVAh4_default" href="DBTable_zu975zmAUAWGVAh5.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2095.0,2.0,2980.0,22.0" coords2="2095.0,2.0,2980.0,22.0" shape="rect" alt="bodega / compras:Diagram Overview" id="areadiagram_map_xCjL5zmAUAWGVAhG_defaultheader" href="DiagramOverview_xCjL5zmAUAWGVAhH.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2095.0,22.0,2980.0,601.0" coords2="2095.0,22.0,2980.0,601.0" shape="rect" alt="bodega / compras:Diagram Overview" id="areadiagram_map_xCjL5zmAUAWGVAhG_default" href="" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      detalles_venta
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1711, 170, 1861, 282" coords2="1711, 170, 1861, 282" shape="rect" alt="detalle_venta:Entity" id="areadiagram_map_gXIGxzmAUAW6iw7d_default" href="DBTable_gXIGxzmAUAW6iw7e.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      factura
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1711, 434, 1859, 528" coords2="1711, 434, 1859, 528" shape="rect" alt="factura:Entity" id="areadiagram_map_af7CxzmAUAW6iw2b_default" href="DBTable_af7CxzmAUAW6iw2c.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      pago
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1373, 407, 1549, 556" coords2="1373, 407, 1549, 556" shape="rect" alt="pago:Entity" id="areadiagram_map_IuGLRzmAUAW6iwoE_default" href="DBTable_IuGLRzmAUAW6iwoF.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      venta
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="1381, 178, 1541, 290" coords2="1381, 178, 1541, 290" shape="rect" alt="venta:Entity" id="areadiagram_map_DjALRzmAUAW6iwm2_default" href="DBTable_DjALRzmAUAW6iwm3.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      cliente
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="931, 170, 1186, 245" coords2="931, 170, 1186, 245" shape="rect" alt="cliente:Entity" id="areadiagram_map_L.51RzmAUAW6iwgc_default" href="DBTable_L_51RzmAUAW6iwgd.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      log_errores
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="263, 853, 455, 984" coords2="263, 853, 455, 984" shape="rect" alt="log_errores:Entity" id="areadiagram_map_BiAUezmAUAW6iwjQ_default" href="DBTable_hiAUezmAUAW6iwjR.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      datos_personales
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="458, 334, 763, 554" coords2="458, 334, 763, 554" shape="rect" alt="datos_personales:Entity" id="areadiagram_map_iktDuzmAUAW6iwdQ_default" href="DBTable_iktDuzmAUAW6iwdR.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      tipo_documento
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="136, 615, 477, 709" coords2="136, 615, 477, 709" shape="rect" alt="tipo_documento:Entity" id="areadiagram_map_4bk9uzmAUAW6iwcK_default" href="DBTable_4bk9uzmAUAW6iwcL.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      usuario
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="56, 147, 414, 312" coords2="56, 147, 414, 312" shape="rect" alt="usuario:Entity" id="areadiagram_map_E3z1uzmAUAW6iwaN_default" href="DBTable_E3z1uzmAUAW6iwaO.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      autorizacion_usuario
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="504, 26, 708, 85" coords2="504, 26, 708, 85" shape="rect" alt="autorización_usuario:Entity" id="areadiagram_map_zDS1uzmAUAW6iwZN_default" href="DBTable_zDS1uzmAUAW6iwZO.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      autorizacion
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="58, 26, 196, 85" coords2="58, 26, 196, 85" shape="rect" alt="autorizacion:Entity" id="areadiagram_map_mA3ZuzmAUAW6iwX7_default" href="DBTable_BA3ZuzmAUAW6iwX8.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="2.0,4.0,833.0,24.0" coords2="2.0,4.0,833.0,24.0" shape="rect" alt="cliente:Diagram Overview" id="areadiagram_map_dje9RzmAUAW6iwil_defaultheader" href="DiagramOverview_dje9RzmAUAW6iwim.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="2.0,24.0,833.0,785.0" coords2="2.0,24.0,833.0,785.0" shape="rect" alt="cliente:Diagram Overview" id="areadiagram_map_dje9RzmAUAW6iwil_default" href="" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="231.0,812.0,506.0,832.0" coords2="231.0,812.0,506.0,832.0" shape="rect" alt="logs:Diagram Overview" id="areadiagram_map_16kDRzmAUAW6iwkY_defaultheader" href="DiagramOverview_N6kDRzmAUAW6iwkZ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="231.0,832.0,506.0,1045.0" coords2="231.0,832.0,506.0,1045.0" shape="rect" alt="logs:Diagram Overview" id="areadiagram_map_16kDRzmAUAW6iwkY_default" href="" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="908.0,147.0,1982.0,167.0" coords2="908.0,147.0,1982.0,167.0" shape="rect" alt="venta/caja:Diagram Overview" id="areadiagram_map_88BDRzmAUAW6iwlj_defaultheader" href="DiagramOverview_C8BDRzmAUAW6iwlk.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="908.0,167.0,1982.0,641.0" coords2="908.0,167.0,1982.0,641.0" shape="rect" alt="venta/caja:Diagram Overview" id="areadiagram_map_88BDRzmAUAW6iwlj_default" href="" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Database Tables			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="25%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_2fCWy_mAUAWIfAqK.html" class="ItemLink">Antecedentes : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_MiEWFzmAUAWGVBB4.html" class="ItemLink">formula_optica : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">formula_optica</span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_jq1mFzmAUAWGVBBW.html" class="ItemLink">historia_clinica : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">historia_clinica</span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_MbbGFzmAUAWGVBAn.html" class="ItemLink">consulta : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">consulta</span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_P3E4FzmAUAWGVA51.html" class="ItemLink">agenda_consulta : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">agenda_consulta</span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_tc8f5zmAUAWGVAn9.html" class="ItemLink">detalle_compra : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">detalle_compra</span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_b_Ov5zmAUAWGVAnY.html" class="ItemLink">compra : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">compra</span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_1_p35zmAUAWGVAl9.html" class="ItemLink">proveedor : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">peoveedor</span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_yNyn5zmAUAWGVAjU.html" class="ItemLink">producto : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">producto</span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_zu975zmAUAWGVAh5.html" class="ItemLink">cat_producto : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">categoria_producto</span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_gXIGxzmAUAW6iw7e.html" class="ItemLink">detalle_venta : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">detalles_venta</span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_af7CxzmAUAW6iw2c.html" class="ItemLink">factura : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">factura</span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_IuGLRzmAUAW6iwoF.html" class="ItemLink">pago : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">pago</span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_DjALRzmAUAW6iwm3.html" class="ItemLink">venta : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">venta</span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_L_51RzmAUAW6iwgd.html" class="ItemLink">cliente : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">cliente</span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_hiAUezmAUAW6iwjR.html" class="ItemLink">log_errores : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">log_errores</span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_iktDuzmAUAW6iwdR.html" class="ItemLink">datos_personales : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">datos_personales</span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_4bk9uzmAUAW6iwcL.html" class="ItemLink">tipo_documento : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">tipo_documento</span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_E3z1uzmAUAW6iwaO.html" class="ItemLink">usuario : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">usuario</span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_zDS1uzmAUAW6iwZO.html" class="ItemLink">autorización_usuario : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">autorizacion_usuario</span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Entity.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Entity.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+&nbsp;<a href="DBTable_BA3ZuzmAUAW6iwX8.html" class="ItemLink">autorizacion : Entity</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">autorizacion</span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+Antecedentes Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_2fCWy_mAUAWIfAqK.html#O7KWy_mAUAWIfAqf" class="ItemLink">id_historia</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK / FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_2fCWy_mAUAWIfAqK.html#V0.Wy_mAUAWIfAqq" class="ItemLink">antecedentes</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(1000)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_2fCWy_mAUAWIfAqK.html#TfQ2y_mAUAWIfArV" class="ItemLink">id_antecedentes</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+formula_optica Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MiEWFzmAUAWGVBB4.html#ETsWFzmAUAWGVBCG" class="ItemLink">id_formula</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_formula_optica
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MiEWFzmAUAWGVBB4.html#S_cWFzmAUAWGVBCJ" class="ItemLink">id_consulta</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_consulta
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MiEWFzmAUAWGVBB4.html#qTiWFzmAUAWGVBCP" class="ItemLink">esfera_ojo_derecho_e_izquierdo</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      esfera_ojo_derecho_e_izquierdo
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MiEWFzmAUAWGVBB4.html#jy.WFzmAUAWGVBCS" class="ItemLink">cilindro_ojo_derecho_e_izquierdo</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      cilindro_ojo_derecho_e_izquierdo
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MiEWFzmAUAWGVBB4.html#8oXWFzmAUAWGVBCb" class="ItemLink">eje_ojo_derecho_e_izquierdo</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      eje_ojo_derecho_e_izquierdo
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MiEWFzmAUAWGVBB4.html#5LvWFzmAUAWGVBCe" class="ItemLink">adicion</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(100)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      adicion
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MiEWFzmAUAWGVBB4.html#ulo2FzmAUAWGVBCi" class="ItemLink">tipo_lente</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      tipo_lente
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MiEWFzmAUAWGVBB4.html#Wak2FzmAUAWGVBCm" class="ItemLink">uso</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      uso
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MiEWFzmAUAWGVBB4.html#Nvs2FzmAUAWGVBCq" class="ItemLink">observaciones</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(1000)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      observaciones
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MiEWFzmAUAWGVBB4.html#mii2FzmAUAWGVBCt" class="ItemLink">fecha_generacion</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha_generacion
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+historia_clinica Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_jq1mFzmAUAWGVBBW.html#.n9mFzmAUAWGVBBc" class="ItemLink">id_historia</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_historia_clinica
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_jq1mFzmAUAWGVBBW.html#J4rmFzmAUAWGVBBf" class="ItemLink">id_cliente</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_paciente
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_jq1mFzmAUAWGVBBW.html#4A7mFzmAUAWGVBBi" class="ItemLink">fecha_apertura</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha_apertura
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+consulta Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MbbGFzmAUAWGVBAn.html#VavGFzmAUAWGVBAt" class="ItemLink">id_consulta</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_consulta
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MbbGFzmAUAWGVBAn.html#5kMmFzmAUAWGVBAz" class="ItemLink">id_usuario</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_optometra
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MbbGFzmAUAWGVBAn.html#VYzxSLmGAqACDA1f" class="ItemLink">id_historia</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_historia_clinica
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MbbGFzmAUAWGVBAn.html#DHsmFzmAUAWGVBA2" class="ItemLink">fecha_hora</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha_hora
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MbbGFzmAUAWGVBAn.html#5NymFzmAUAWGVBA5" class="ItemLink">motivo</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(40)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      motivo
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MbbGFzmAUAWGVBAn.html#StqmFzmAUAWGVBA8" class="ItemLink">resultado_examen</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(1000)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      resultado_examen
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MbbGFzmAUAWGVBAn.html#wn2mFzmAUAWGVBBA" class="ItemLink">diagnostico</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(1000)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      diagnostico
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MbbGFzmAUAWGVBAn.html#qaemFzmAUAWGVBBD" class="ItemLink">recomendaciones</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(1000)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      recomendaciones
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MbbGFzmAUAWGVBAn.html#A5IPTIWGAqACDAlU" class="ItemLink">evolucion</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(1000)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_MbbGFzmAUAWGVBAn.html#aPX4zIWGAqACDAqE" class="ItemLink">id_agenda</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+agenda_consulta Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_P3E4FzmAUAWGVA51.html#E3M4FzmAUAWGVA55" class="ItemLink">id_agenda</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_agenda
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_P3E4FzmAUAWGVA51.html#7qC4FzmAUAWGVA6A" class="ItemLink">id_cliente</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_cliente
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_P3E4FzmAUAWGVA51.html#p8m4FzmAUAWGVA6Q" class="ItemLink">fecha_hora</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha_hora
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_P3E4FzmAUAWGVA51.html#Y824FzmAUAWGVA6U" class="ItemLink">motivo</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(40)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      motivo
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_P3E4FzmAUAWGVA51.html#3Y2eSLmGAqACDAuk" class="ItemLink">estado</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      estado
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+detalle_compra Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_tc8f5zmAUAWGVAn9.html#g86f5zmAUAWGVAoB" class="ItemLink">id_detalle_compra</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_tc8f5zmAUAWGVAn9.html#aCuf5zmAUAWGVAoE" class="ItemLink">id_compra</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_compra
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_tc8f5zmAUAWGVAn9.html#Xihf5zmAUAWGVAoK" class="ItemLink">cantidad</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      cantidad
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_tc8f5zmAUAWGVAn9.html#0sVf5zmAUAWGVAod" class="ItemLink">costo_unitario</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      costo_unitario
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_tc8f5zmAUAWGVAn9.html#dkI4zHmGAqAEFws4" class="ItemLink">id_producto</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+compra Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_b_Ov5zmAUAWGVAnY.html#TRhv5zmAUAWGVAne" class="ItemLink">id_compra</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_compra
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_b_Ov5zmAUAWGVAnY.html#izgaSLmGAqACDApi" class="ItemLink">id_proveedor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_proveedor
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_b_Ov5zmAUAWGVAnY.html#CRrv5zmAUAWGVAnn" class="ItemLink">fecha_compra</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha_compra
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_b_Ov5zmAUAWGVAnY.html#xpPv5zmAUAWGVAnu" class="ItemLink">num_comprobante</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      numero_comprobante
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_b_Ov5zmAUAWGVAnY.html#3twf5zmAUAWGVAnx" class="ItemLink">estado</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      estado
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+proveedor Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_1_p35zmAUAWGVAl9.html#s6L35zmAUAWGVAmJ" class="ItemLink">id_proveedor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_1_p35zmAUAWGVAl9.html#_k1qSLmGAqACDAnp" class="ItemLink">id_tipo_documento</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_tipo_documento
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_1_p35zmAUAWGVAl9.html#XiAP5zmAUAWGVAmM" class="ItemLink">nit</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      nit
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_1_p35zmAUAWGVAl9.html#EaIP5zmAUAWGVAmP" class="ItemLink">razon_social</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      razon_social
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_1_p35zmAUAWGVAl9.html#Pr0P5zmAUAWGVAmT" class="ItemLink">contacto</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      contacto
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_1_p35zmAUAWGVAl9.html#WfmP5zmAUAWGVAmX" class="ItemLink">telefono</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      telefono
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_1_p35zmAUAWGVAl9.html#2LJP5zmAUAWGVAma" class="ItemLink">correo</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(40)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      correo
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_1_p35zmAUAWGVAl9.html#DkIv5zmAUAWGVAmd" class="ItemLink">estado</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      estado
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_1_p35zmAUAWGVAl9.html#Ogkv5zmAUAWGVAmg" class="ItemLink">tipo</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(40)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      tipo
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+producto Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yNyn5zmAUAWGVAjU.html#sx6n5zmAUAWGVAjg" class="ItemLink">id_producto</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_producto
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yNyn5zmAUAWGVAjU.html#IxWn5zmAUAWGVAjj" class="ItemLink">id_categoria</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_categoria
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yNyn5zmAUAWGVAjU.html#vx5n5zmAUAWGVAjm" class="ItemLink">codigo_producto</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      codigo_producto
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yNyn5zmAUAWGVAjU.html#ZQNn5zmAUAWGVAjq" class="ItemLink">nombre</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(40)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      nombre
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yNyn5zmAUAWGVAjU.html#ATLn5zmAUAWGVAju" class="ItemLink">descripcion</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      descripcion
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yNyn5zmAUAWGVAjU.html#fRHn5zmAUAWGVAjx" class="ItemLink">precio_venta</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      precio_venta
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yNyn5zmAUAWGVAjU.html#Rt3n5zmAUAWGVAj0" class="ItemLink">estado</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      estado
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yNyn5zmAUAWGVAjU.html#rp4X5zmAUAWGVAkJ" class="ItemLink">fecha_creacion</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha_creacion
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yNyn5zmAUAWGVAjU.html#ynzGy_mAUAWIfAmt" class="ItemLink">stock_actual</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_yNyn5zmAUAWGVAjU.html#RpRmy_mAUAWIfAn2" class="ItemLink">stock_minimo</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+cat_producto Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_zu975zmAUAWGVAh5.html#V0H75zmAUAWGVAiV" class="ItemLink">id_categoria</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_categoria_producto
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_zu975zmAUAWGVAh5.html#ozzH5zmAUAWGVAi4" class="ItemLink">nombre_categoria</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(40)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      nombre_categoria
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_zu975zmAUAWGVAh5.html#uYHH5zmAUAWGVAi8" class="ItemLink">descripcion</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      descripcion
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_zu975zmAUAWGVAh5.html#4ZAn5zmAUAWGVAjA" class="ItemLink">estado</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      estado
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+detalle_venta Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_gXIGxzmAUAW6iw7e.html#IpEGxzmAUAW6iw7i" class="ItemLink">id_detalle</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_detalle_venta
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_gXIGxzmAUAW6iw7e.html#7RsGxzmAUAW6iw7l" class="ItemLink">id_venta</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_venta
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_gXIGxzmAUAW6iw7e.html#n.CGxzmAUAW6iw7o" class="ItemLink">id_producto</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_producto
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_gXIGxzmAUAW6iw7e.html#opuGxzmAUAW6iw8U" class="ItemLink">cantidad</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      cantidad
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_gXIGxzmAUAW6iw7e.html#VUBGxzmAUAW6iw8X" class="ItemLink">precio_unitario</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      precio_unitario
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+factura Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_af7CxzmAUAW6iw2c.html#cuXCxzmAUAW6iw2q" class="ItemLink">id_factura</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_factura
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_af7CxzmAUAW6iw2c.html#tBBKxzmAUAW6iw40" class="ItemLink">num_factura</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      numero,_factura
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_af7CxzmAUAW6iw2c.html#o_lKxzmAUAW6iw4_" class="ItemLink">fecha_emision</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha_emision
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_af7CxzmAUAW6iw2c.html#SPRXgAWGAqACIg0B" class="ItemLink">id_pago</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+pago Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_IuGLRzmAUAW6iwoF.html#NZCXRzmAUAW6iwu4" class="ItemLink">id_pago</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_pago
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_IuGLRzmAUAW6iwoF.html#VLxcxzmAUAW6iw0I" class="ItemLink">metodo_pago</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(40)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      metodo_pago
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_IuGLRzmAUAW6iwoF.html#E288xzmAUAW6iw1i" class="ItemLink">fecha_pago</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha_pago
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_IuGLRzmAUAW6iwoF.html#mMy8xzmAUAW6iw1m" class="ItemLink">monto</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      monto
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_IuGLRzmAUAW6iwoF.html#TAL8xzmAUAW6iw1p" class="ItemLink">monto_recibido</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      monto_recibido
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_IuGLRzmAUAW6iwoF.html#866CxzmAUAW6iw2A" class="ItemLink">cambio</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      cambio
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_IuGLRzmAUAW6iwoF.html#8YDRAAWGAqACIgok" class="ItemLink">id_venta</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+venta Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_DjALRzmAUAW6iwm3.html#0gg7RzmAUAW6iwsn" class="ItemLink">id_venta</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_venta
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_DjALRzmAUAW6iwm3.html#TvLbRzmAUAW6iwsI" class="ItemLink">id_cliente</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_cliente
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_DjALRzmAUAW6iwm3.html#honbRzmAUAW6iwsd" class="ItemLink">id_usuario</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_cajero
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_DjALRzmAUAW6iwm3.html#VG37RzmAUAW6iwt3" class="ItemLink">fecha_venta</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha_venta
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_DjALRzmAUAW6iwm3.html#p2f7RzmAUAW6iwt7" class="ItemLink">estado</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      estado
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+cliente Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_L_51RzmAUAW6iwgd.html#eBQdRzmAUAW6iwgz" class="ItemLink">id_cliente</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_cliente
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_L_51RzmAUAW6iwgd.html#5TvdRzmAUAW6iwh2" class="ItemLink">fecha_registro</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha_registro
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_L_51RzmAUAW6iwgd.html#jsFbRzmAUAW6iwrl" class="ItemLink">id_datos_personales</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_datos_cliente
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+log_errores Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_hiAUezmAUAW6iwjR.html#9zJ0ezmAUAW6iwj4" class="ItemLink">id</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_log_errores
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_hiAUezmAUAW6iwjR.html#HO7OSLmGAqACDAtZ" class="ItemLink">id_usuario</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_usuario
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_hiAUezmAUAW6iwjR.html#qFp0ezmAUAW6iwj7" class="ItemLink">nivel</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      nivel
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_hiAUezmAUAW6iwjR.html#Oe10ezmAUAW6iwj_" class="ItemLink">nombre_usuario</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      nombre_usuario
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_hiAUezmAUAW6iwjR.html#lVb0ezmAUAW6iwkD" class="ItemLink">mensaje</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(1000)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      mensaje
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_hiAUezmAUAW6iwjR.html#KEP0ezmAUAW6iwkH" class="ItemLink">fecha</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">datetime(0)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      fecha
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+datos_personales Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#pOiLuzmAUAW6iweh" class="ItemLink">id</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_datos_personales
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#A2SLuzmAUAW6iwek" class="ItemLink">id_tipo_documento</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_tipo_documento
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#m6WLuzmAUAW6iweo" class="ItemLink">numero_documento</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      numero_documento
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#XM1LuzmAUAW6iwex" class="ItemLink">primer_nombre</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      primer_nombre
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#BKjLuzmAUAW6iwe1" class="ItemLink">segundo_nombre</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Yes			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      segundo_nombre
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#TErLuzmAUAW6iwe5" class="ItemLink">primer_apellido</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      primer_apellido
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#HNXLuzmAUAW6iwe9" class="ItemLink">segundo_apellido</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Yes			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      segundo_apellido
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#lCaOy_mAUAWIfAsk" class="ItemLink">fecha_nacimiento</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#jApOy_mAUAWIfAs6" class="ItemLink">genero</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Yes			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#QooRAAWGAqACIgm3" class="ItemLink">correo</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(40)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Yes			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_iktDuzmAUAW6iwdR.html#vyyzgAWGAqACIgvh" class="ItemLink">telefono</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+tipo_documento Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_4bk9uzmAUAW6iwcL.html#RSM9uzmAUAW6iwcX" class="ItemLink">id</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_tipo_documento
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_4bk9uzmAUAW6iwcL.html#0Oc9uzmAUAW6iwca" class="ItemLink">sigla</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(10)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      sigla
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_4bk9uzmAUAW6iwcL.html#rwK9uzmAUAW6iwce" class="ItemLink">nombre_documento</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      nombre_documento
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_4bk9uzmAUAW6iwcL.html#ttm9uzmAUAW6iwci" class="ItemLink">estado</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      estado
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+usuario Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_E3z1uzmAUAW6iwaO.html#VObNuzmAUAW6iwaS" class="ItemLink">id</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_usuario
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_E3z1uzmAUAW6iwaO.html#lqItuzmAUAW6iwad" class="ItemLink">contrasenia</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(255)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      contrasenia
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_E3z1uzmAUAW6iwaO.html#jx2tuzmAUAW6iwa4" class="ItemLink">activar_usuario</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Yes			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      activar_usuario
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_E3z1uzmAUAW6iwaO.html#pFdtuzmAUAW6iwa7" class="ItemLink">clave_idioma</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(6)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      clave_idioma
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_E3z1uzmAUAW6iwaO.html#eRB4ezmAUAW6iwhy" class="ItemLink">clave_activacion</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Yes			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      clave_activacion
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_E3z1uzmAUAW6iwaO.html#Prv4ezmAUAW6iwh4" class="ItemLink">llave_reinicio</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(20)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Yes			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      llave_reinicio
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_E3z1uzmAUAW6iwaO.html#Uu0EezmAUAW6iwh8" class="ItemLink">hora_reinicio</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">date</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+Yes			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      hora_reinicio
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_E3z1uzmAUAW6iwaO.html#N62TgAWGAqACIguD" class="ItemLink">id_datos_personales</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+autorización_usuario Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_zDS1uzmAUAW6iwZO.html#VZW1uzmAUAW6iwZY" class="ItemLink">id_autorizacion</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK / FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_autorizacion
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_zDS1uzmAUAW6iwZO.html#B3.1uzmAUAW6iwZc" class="ItemLink">id_sistema_usuario</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK / FK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_sistema_usuario
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<p>
+	</p>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+autorizacion Table			</td>
+		</tr>
+		<tr>
+			<td class="TableCellSpaceHolder5PxTall">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="10" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="15%">
+<span class="TableHeaderText">Column Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="10%">
+<span class="TableHeaderText">Data Type</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="7%">
+<span class="TableHeaderText">PK / FK</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="5%">
+<span class="TableHeaderText">Nullable</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td width="*">
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="10" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_BA3ZuzmAUAW6iwX8.html#7u1duzmAUAW6iwbZ" class="ItemLink">id</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">int(11)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+PK			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      id_autorizacion
+    </p>
+  </body>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td class="TableContent">
+				<span class="TableContent">
+<a href="DBTable_BA3ZuzmAUAW6iwX8.html#KW15uzmAUAW6iwYS" class="ItemLink">nombre</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td>
+<span class="TableContent">varchar(50)</span>			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+			</td>
+			<td>
+			</td>
+			<td class="TableContent">
+No			</td>
+			<td>
+			</td>
+			<td class="TableContent Documentation">
+<head>
+    
+  </head>
+  <body style="color:#000000;font-weight:normal;margin-left:0;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      nombre
+    </p>
+  </body>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<p>
+	</p>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		LM_SI	</div>
+</body>
+</html>
